@@ -55,7 +55,7 @@ Architect-AI/
 1. Clone the repository
 
 Bash
-git clone [https://github.com/yourusername/Architect-AI.git](https://github.com/yourusername/Architect-AI.git)
+git clone https://github.com/imnismay/Architect-AI.git
 cd Architect-AI
 2. Install dependencies
 Make sure you have Python installed, then run:
