@@ -1,0 +1,70 @@
+<style>
+    .t2 { padding: 50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #222; }
+    .t2 h1 { font-size: 38px; font-weight: 800; margin: 0; color: #111; letter-spacing: -0.5px;}
+    .t2 .subtitle { font-size: 18px; color: #555; margin-bottom: 15px; font-weight: 500;}
+    .t2 .contact { font-size: 13px; background: #f4f4f5; padding: 12px; border-radius: 6px; margin-bottom: 25px; line-height: 1.6;}
+    .t2 h2 { font-size: 18px; font-weight: bold; margin: 25px 0 12px 0; color: #000; border-bottom: 2px solid #eaeaea; padding-bottom: 4px;}
+    .t2 p { font-size: 14px; line-height: 1.6; margin: 0 0 15px 0; color: #333;}
+    .t2 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .t2 .edu-row { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 8px; border-bottom: 1px dashed #e4e4e7; padding-bottom: 4px;}
+    .t2 .proj-box { margin-bottom: 15px; }
+</style>
+<div class="t2">
+    <h1 id="prev-name">Name</h1>
+    <div class="subtitle" id="prev-title">Role</div>
+    
+    <div class="contact">
+        <span id="prev-email"></span> &bull; <span id="prev-phone"></span> &bull; <span id="prev-address"></span>
+        
+        <div id="link-container" style="margin-top: 5px; font-weight: bold; color: #555;"></div>
+    </div>
+    
+    <h2>Profile Summary</h2><p id="prev-summary"></p>
+    
+    <div class="grid">
+        <div>
+            <h2>Education</h2>
+            <div id="container-phd" class="edu-row"><b>PhD</b> <span id="prev-phd-college"></span> <span><span id="prev-phd-score"></span> | <span id="prev-phd-year"></span></span></div>
+            <div id="container-master" class="edu-row"><b>Master's</b> <span id="prev-master-college"></span> <span><span id="prev-master-score"></span> | <span id="prev-master-year"></span></span></div>
+            <div class="edu-row"><b>B.E.</b> <span id="prev-college"></span> <span><span id="prev-deg-score"></span> | <span id="prev-deg-year"></span></span></div>
+            <div class="edu-row"><b>PUC</b> <span id="prev-puc-college"></span> <span><span id="prev-puc-score"></span> | <span id="prev-puc-year"></span></span></div>
+            <div class="edu-row"><b>SSLC</b> <span id="prev-sslc-school"></span> <span><span id="prev-sslc-score"></span> | <span id="prev-sslc-year"></span></span></div>
+            
+            <h2>Technical Skills</h2><p id="prev-skills"></p>
+            
+            <h2>Details</h2>
+            <p><b>Languages:</b> <span id="prev-langs"></span><br>
+            <b>Hobbies:</b> <span id="prev-hobbies"></span></p>
+        </div>
+        <div>
+            <h2>Key Projects</h2>
+            <div id="container-proj1" class="proj-box">
+                <b style="font-size: 15px; color: #111;"><span id="prev-proj1-title"></span></b> <br>
+                <i style="font-size: 13px; color: #666;"><span id="prev-proj1-tech"></span></i>
+                <p id="prev-proj1-desc" style="margin-top: 5px;"></p>
+            </div>
+            
+            <div id="container-proj2" class="proj-box">
+                <b style="font-size: 15px; color: #111;"><span id="prev-proj2-title"></span></b> <br>
+                <i style="font-size: 13px; color: #666;"><span id="prev-proj2-tech"></span></i>
+                <p id="prev-proj2-desc" style="margin-top: 5px;"></p>
+            </div>
+
+            <div id="container-proj3" class="proj-box">
+                <b style="font-size: 15px; color: #111;"><span id="prev-proj3-title"></span></b> <br>
+                <i style="font-size: 13px; color: #666;"><span id="prev-proj3-tech"></span></i>
+                <p id="prev-proj3-desc" style="margin-top: 5px;"></p>
+            </div>
+
+            <div id="container-proj4" class="proj-box">
+                <b style="font-size: 15px; color: #111;"><span id="prev-proj4-title"></span></b> <br>
+                <i style="font-size: 13px; color: #666;"><span id="prev-proj4-tech"></span></i>
+                <p id="prev-proj4-desc" style="margin-top: 5px;"></p>
+            </div>
+
+            <h2>Strengths & Achievements</h2>
+            <p id="prev-achievements" style="margin-bottom: 5px;"></p>
+            <p id="prev-strengths"></p>
+        </div>
+    </div>
+</div>

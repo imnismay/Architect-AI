@@ -1,0 +1,90 @@
+<style>
+    .tpl-minimal { padding: 40px; font-family: 'Helvetica', Arial, sans-serif; color: #111; line-height: 1.5; }
+    .tpl-minimal h1 { font-size: 32px; font-weight: bold; margin: 0 0 5px 0; text-align: center; text-transform: uppercase;}
+    .tpl-minimal .title { font-size: 16px; font-style: italic; color: #444; text-align: center; margin-bottom: 5px;}
+    .tpl-minimal .contact-info { text-align: center; font-size: 12px; color: #555; margin-bottom: 20px; }
+    
+    .tpl-minimal h2 { font-size: 14px; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; margin-top: 15px; margin-bottom: 8px; border-bottom: 2px solid #222; padding-bottom: 3px; background-color: #f8f9fa; padding-left: 5px;}
+    
+    .tpl-minimal p { font-size: 12px; margin: 0 0 8px 0; }
+    
+    .tpl-minimal .edu-grid { display: grid; grid-template-columns: 3fr 2fr 1fr; gap: 10px; font-size: 12px; margin-bottom: 8px; }
+    .tpl-minimal .edu-header { font-weight: bold; font-size: 11px; color: #666; border-bottom: 1px solid #eee; padding-bottom: 3px; margin-bottom: 5px;}
+    
+    .tpl-minimal .item-header { display: flex; justify-content: space-between; font-size: 13px; font-weight: bold; margin-bottom: 2px; }
+    .tpl-minimal .item-sub { font-size: 12px; font-style: italic; color: #444; margin-bottom: 4px;}
+    
+    .tpl-minimal .two-col { display: flex; justify-content: space-between; gap: 20px;}
+    .tpl-minimal .two-col > div { width: 50%; }
+</style>
+
+<div class="tpl-minimal">
+    <h1 id="prev-name">Name</h1>
+    <div class="title" id="prev-title">Target Role</div>
+    <div class="contact-info">
+        <span id="prev-email">email@placeholder.com</span> | <span id="prev-phone">+1 234 567 8900</span><br>
+        <span id="prev-address">Address Line</span>
+    </div>
+    
+    <h2>Career Objective</h2>
+    <p id="prev-summary">Objective placeholder.</p>
+    
+    <h2>Education</h2>
+    <div class="edu-grid edu-header">
+        <div>Degree / Examination</div>
+        <div>Institution / Board</div>
+        <div style="text-align: right;">Score & Year</div>
+    </div>
+    <div class="edu-grid">
+        <div id="prev-degree" style="font-weight: bold;">B.E.</div>
+        <div id="prev-college">College</div>
+        <div style="text-align: right;"><span id="prev-deg-score">Score</span> | <span id="prev-deg-year">Year</span></div>
+    </div>
+    <div class="edu-grid">
+        <div style="font-weight: bold;">Pre-University (PUC)</div>
+        <div id="prev-puc-college">PUC Board</div>
+        <div style="text-align: right;"><span id="prev-puc-score">Score</span> | <span id="prev-puc-year">Year</span></div>
+    </div>
+    <div class="edu-grid">
+        <div style="font-weight: bold;">SSLC (10th Grade)</div>
+        <div id="prev-sslc-school">SSLC Board</div>
+        <div style="text-align: right;"><span id="prev-sslc-score">Score</span> | <span id="prev-sslc-year">Year</span></div>
+    </div>
+    
+    <h2>Technical Skills</h2>
+    <p id="prev-skills">Skill breakdown here.</p>
+
+    <h2>Projects</h2>
+    <div style="margin-bottom: 10px;">
+        <div class="item-header" id="prev-proj1-title">Project 1 Title</div>
+        <div class="item-sub" id="prev-proj1-tech">Project 1 Tech Stack</div>
+        <p id="prev-proj1-desc">Project 1 description.</p>
+    </div>
+    <div>
+        <div class="item-header" id="prev-proj2-title">Project 2 Title</div>
+        <div class="item-sub" id="prev-proj2-tech">Project 2 Tech Stack</div>
+        <p id="prev-proj2-desc">Project 2 description.</p>
+    </div>
+    
+    <div class="two-col">
+        <div>
+            <h2>Achievements</h2>
+            <p id="prev-achievements">Achievements list.</p>
+        </div>
+        <div>
+            <h2>Strengths</h2>
+            <p id="prev-strengths">Strengths list.</p>
+        </div>
+    </div>
+
+    <div class="two-col" style="margin-top: -10px;">
+        <div>
+            <h2>Languages Known</h2>
+            <p id="prev-langs">English, Hindi</p>
+        </div>
+        <div>
+            <h2>Hobbies</h2>
+            <p id="prev-hobbies">Hobbies list</p>
+        </div>
+    </div>
+</div>

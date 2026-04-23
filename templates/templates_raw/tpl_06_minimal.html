@@ -1,0 +1,39 @@
+<style>
+    .t6 { padding: 50px; font-family: 'Georgia', serif; text-align: center; color: #333; }
+    .t6 h1 { font-size: 26px; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 5px; }
+    .t6 .contact { font-size: 11px; margin-bottom: 20px; color: #777; }
+    .t6 h2 { font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin: 20px 0 10px 0; }
+    .t6 .divider { width: 50px; height: 1px; background: #333; margin: 0 auto 15px auto; }
+    .t6 p { font-size: 12px; line-height: 1.6; text-align: left; }
+    .t6 .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; text-align: left; }
+</style>
+<div class="t6">
+    <h1 id="prev-name">Name</h1>
+    <div id="prev-title" style="font-style: italic; margin-bottom: 10px;">Role</div>
+    <div class="contact">
+        <span id="prev-phone"></span> | <span id="prev-email"></span><br><span id="prev-address"></span>
+        <div id="link-container" style="margin-top: 5px;"></div>
+    </div>
+    
+    <h2>Profile</h2><div class="divider"></div>
+    <p id="prev-summary" style="text-align: center;"></p>
+    
+    <h2>Education</h2><div class="divider"></div>
+    <div class="grid">
+        <div id="container-phd"><b>PhD</b> <span id="prev-phd-college"></span> (<span id="prev-phd-score"></span>)</div>
+        <div id="container-master"><b>Master's</b> <span id="prev-master-college"></span> (<span id="prev-master-score"></span>)</div>
+        <div><b>B.E.</b> <span id="prev-college"></span> (<span id="prev-deg-score"></span>)</div>
+        <div><b>PUC</b> <span id="prev-puc-college"></span> (<span id="prev-puc-score"></span>)</div>
+    </div>
+    <p style="text-align: center; margin-top: 5px;"><b>SSLC</b> <span id="prev-sslc-school"></span> (<span id="prev-sslc-score"></span>)</p>
+
+    <div class="grid" style="margin-top: 20px;">
+        <div><h2>Skills</h2><div class="divider" style="margin: 0 0 10px 0"></div><p id="prev-skills"></p></div>
+        <div><h2 id="header-projects">Projects</h2><div class="divider" style="margin: 0 0 10px 0"></div>
+            <div id="container-proj1"><b><span id="prev-proj1-title"></span></b><p id="prev-proj1-desc"></p></div>
+            <div id="container-proj2"><b><span id="prev-proj2-title"></span></b><p id="prev-proj2-desc"></p></div>
+            <div id="container-proj3"><b><span id="prev-proj3-title"></span></b><p id="prev-proj3-desc"></p></div>
+            <div id="container-proj4"><b><span id="prev-proj4-title"></span></b><p id="prev-proj4-desc"></p></div>
+        </div>
+    </div>
+</div>

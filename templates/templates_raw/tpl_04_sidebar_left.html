@@ -1,0 +1,42 @@
+<style>
+    .t4 { display: flex; min-height: 297mm; font-family: 'Helvetica', sans-serif; }
+    .t4 .left { width: 32%; background: #2c3e50; color: white; padding: 30px; font-size: 11px;}
+    .t4 .right { width: 68%; background: white; padding: 30px; font-size: 12px;}
+    .t4 h1 { font-size: 24px; margin: 0 0 5px 0; }
+    .t4 .left h2 { color: #1abc9c; border-bottom: 1px solid #1abc9c; font-size: 14px; margin: 20px 0 10px 0;}
+    .t4 .right h2 { color: #2c3e50; border-bottom: 2px solid #2c3e50; font-size: 16px; margin: 15px 0 10px 0;}
+    .t4 p { margin-bottom: 10px; line-height: 1.4; }
+    .t4 .edu { display: flex; justify-content: space-between; font-weight: bold;}
+</style>
+<div class="t4">
+    <div class="left">
+        <h1 id="prev-name">Name</h1>
+        <p style="font-style: italic; font-size: 13px;" id="prev-title">Role</p>
+        <h2>Contact</h2>
+        <p><span id="prev-phone"></span><br><span id="prev-email"></span><br><span id="prev-address"></span></p>
+        <div id="link-container" style="color: #1abc9c; margin-bottom: 15px;"></div>
+        
+        <h2>Skills</h2><p id="prev-skills"></p>
+        <h2>Languages</h2><p id="prev-langs"></p>
+        <h2>Hobbies</h2><p id="prev-hobbies"></p>
+    </div>
+    <div class="right">
+        <h2>Objective</h2><p id="prev-summary"></p>
+        
+        <h2>Education</h2>
+        <div id="container-phd"><div class="edu"><span>PhD - <span id="prev-phd-college"></span></span> <span><span id="prev-phd-score"></span></span></div><p></p></div>
+        <div id="container-master"><div class="edu"><span>Master's - <span id="prev-master-college"></span></span> <span><span id="prev-master-score"></span></span></div><p></p></div>
+        <div class="edu"><span>B.E. - <span id="prev-college"></span></span> <span><span id="prev-deg-score"></span></span></div><p></p>
+        <div class="edu"><span>PUC - <span id="prev-puc-college"></span></span> <span><span id="prev-puc-score"></span></span></div><p></p>
+        <div class="edu"><span>SSLC - <span id="prev-sslc-school"></span></span> <span><span id="prev-sslc-score"></span></span></div><p></p>
+        
+        <h2 id="header-projects">Projects</h2>
+        <div id="container-proj1"><b><span id="prev-proj1-title"></span></b> (<span id="prev-proj1-tech"></span>)<p id="prev-proj1-desc"></p></div>
+        <div id="container-proj2"><b><span id="prev-proj2-title"></span></b> (<span id="prev-proj2-tech"></span>)<p id="prev-proj2-desc"></p></div>
+        <div id="container-proj3"><b><span id="prev-proj3-title"></span></b> (<span id="prev-proj3-tech"></span>)<p id="prev-proj3-desc"></p></div>
+        <div id="container-proj4"><b><span id="prev-proj4-title"></span></b> (<span id="prev-proj4-tech"></span>)<p id="prev-proj4-desc"></p></div>
+        
+        <h2>Achievements</h2><p id="prev-achievements"></p>
+        <h2>Strengths</h2><p id="prev-strengths"></p>
+    </div>
+</div>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Resume Architect & Analyzer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        /* CSS to ensure clean printing */
+        @media print {
+            /* 1. Hide the navbar, left form pane, and AI modal completely */
+            .no-print { display: none !important; }
+            
+            /* 2. Reset the background to white */
+            body { background-color: white !important; }
+            
+            /* 3. Expand the right pane to take up the whole printed page */
+            .print-pane { 
+                width: 100% !important; 
+                padding: 0 !important; 
+                background-color: white !important; 
+                overflow: visible !important; 
+                display: block !important;
+            }
+            
+            /* 4. Remove the shadow and margins from the paper */
+            #resumePreviewContainer { 
+                box-shadow: none !important; 
+                margin: 0 !important; 
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 h-screen overflow-hidden flex flex-col">
+
+    <nav class="bg-indigo-900 text-white p-4 shadow-md flex justify-between items-center z-10 no-print">
+        <h1 class="text-2xl font-bold tracking-wider"><i class="fa-solid fa-file-signature mr-2 text-indigo-400"></i>Architect AI</h1>
+        <div class="flex space-x-4">
+            <button onclick="triggerAnalysis()" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-medium transition duration-200 shadow">
+                <i class="fa-solid fa-brain mr-2"></i>ATS Analyzer
+            </button>
+            <button onclick="printResume()" class="bg-white text-indigo-900 px-4 py-2 rounded-lg font-medium shadow hover:bg-gray-100 transition duration-200">
+                <i class="fa-solid fa-download mr-2"></i>Export PDF
+            </button>
+        </div>
+    </nav>
+
+    <div class="flex flex-1 overflow-hidden">
+        
+        <div class="w-1/3 bg-white border-r border-gray-200 overflow-y-auto p-6 space-y-6 no-print shadow-inner">
+            
+            <div class="mb-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                <label class="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">1. Select Template</label>
+                <select id="templateSelector" class="w-full border-gray-300 rounded-md shadow-sm p-2 border focus:border-indigo-500 focus:ring-indigo-500 font-medium text-gray-700">
+                    <option value="tpl_02_tech" selected>02 - Modern Tech (Clean)</option>
+                    <option value="tpl_01_executive">01 - The Executive (ATS Classic)</option>
+                    <option value="tpl_03_navy">03 - Corporate Navy</option>
+                    <option value="tpl_04_sidebar_left">04 - Left Sidebar Pro</option>
+                    <option value="tpl_05_sidebar_right">05 - Right Sidebar Creative</option>
+                    <option value="tpl_06_minimal">06 - Centered Minimalist</option>
+                    <option value="tpl_07_bold">07 - Startup Bold</option>
+                    <option value="tpl_08_grid">08 - Split Grid</option>
+                    <option value="tpl_09_elegant">09 - Elegant Serif</option>
+                    <option value="tpl_10_dense">10 - Data Dense (Compact)</option>
+                </select>
+            </div>
+
+            <div class="p-4 bg-indigo-50 rounded-lg border border-indigo-100">
+                <label class="block text-sm font-bold text-indigo-900 mb-2 uppercase tracking-wide">2. AI Target Goals</label>
+                <input type="text" id="targetRole" placeholder="Target Role (e.g. Test Engineer)" class="w-full mb-2 p-2 border rounded text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <input type="text" id="targetCompany" placeholder="Target Company/Industry" class="w-full mb-2 p-2 border rounded text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                <select id="expLevel" class="w-full p-2 border rounded text-sm focus:ring-indigo-500 focus:border-indigo-500">
+                    <option>Intern / Student</option>
+                    <option>Entry Level (0-2 Yrs)</option>
+                    <option>Mid Level (3-5 Yrs)</option>
+                    <option>Senior Level (5+ Yrs)</option>
+                </select>
+            </div>
+
+            <hr class="border-gray-200">
+
+            <form id="resumeForm" class="space-y-6 pb-20">
+                
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-800 border-b border-gray-300 pb-1 uppercase tracking-wide text-sm">Personal Details</h4>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase">Full Name</label>
+                        <input type="text" id="fullName" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm font-medium focus:ring-indigo-500" value="MAYUR">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase">Target Role / Title</label>
+                        <input type="text" id="jobTitle" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" value="Software Test Engineer">
+                    </div>
+                    <div class="flex space-x-4">
+                        <div class="w-1/2">
+                            <label class="block text-xs font-semibold text-gray-600 uppercase">Email</label>
+                            <input type="email" id="email" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" value="mr.dammannanavar@yahoo.com">
+                        </div>
+                        <div class="w-1/2">
+                            <label class="block text-xs font-semibold text-gray-600 uppercase">Phone</label>
+                            <input type="text" id="phone" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" value="6366605358">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase">Address</label>
+                        <input type="text" id="address" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" value="Mayur Nivas, Basaveshwar Nagar, Yadgir, Karnataka. 585202">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase">Career Objective</label>
+                        <textarea id="summary" oninput="updatePreview()" rows="4" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">Motivated and detail-oriented Computer Science Engineering student with strong knowledge in Software Testing and core programming. Seeking a position as a Software Test Engineer to apply my skills in manual and automation testing and contribute to quality-driven development environments. Passionate about learning, problem-solving, and delivering high-standard software solutions.</textarea>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-800 border-b border-gray-300 pb-1 uppercase tracking-wide text-sm">Education Background</h4>
+                    
+                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-md shadow-sm">
+                        <label class="block text-xs font-bold text-indigo-700 uppercase mb-2">Undergraduate</label>
+                        <input type="text" id="degree" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md text-sm font-semibold" value="B.E. Computer Science & Engineering">
+                        <div class="flex space-x-2">
+                            <input type="text" id="college" oninput="updatePreview()" class="w-3/5 p-2 border border-gray-300 rounded-md text-sm" value="Navodaya Institute of Technology, Raichur">
+                            <input type="text" id="degreeScore" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm" value="6.9 CGPA">
+                            <input type="text" id="gradYear" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm" value="2022-2026">
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-white border border-dashed border-gray-300 rounded-md">
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">Master's Degree <span class="font-normal text-gray-400 lowercase">(Leave blank to hide)</span></label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="masterCollege" oninput="updatePreview()" class="w-3/5 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="University Name">
+                            <input type="text" id="masterScore" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Score">
+                            <input type="text" id="masterYear" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Year">
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-white border border-dashed border-gray-300 rounded-md">
+                        <label class="block text-xs font-bold text-gray-500 uppercase mb-2">PhD <span class="font-normal text-gray-400 lowercase">(Leave blank to hide)</span></label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="phdCollege" oninput="updatePreview()" class="w-3/5 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="University Name">
+                            <input type="text" id="phdScore" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Score">
+                            <input type="text" id="phdYear" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Year">
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-md shadow-sm">
+                        <label class="block text-xs font-bold text-indigo-700 uppercase mb-2">Pre-University (PUC)</label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="pucCollege" oninput="updatePreview()" class="w-3/5 p-2 border border-gray-300 rounded-md text-sm" value="Sharnbasveshwar Residential PU College">
+                            <input type="text" id="pucScore" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm" value="50.83%">
+                            <input type="text" id="pucYear" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm" value="2020-2022">
+                        </div>
+                    </div>
+
+                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-md shadow-sm">
+                        <label class="block text-xs font-bold text-indigo-700 uppercase mb-2">SSLC (10th Grade)</label>
+                        <div class="flex space-x-2">
+                            <input type="text" id="sslcSchool" oninput="updatePreview()" class="w-3/5 p-2 border border-gray-300 rounded-md text-sm" value="Swaminarayan International School">
+                            <input type="text" id="sslcScore" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm" value="55.6%">
+                            <input type="text" id="sslcYear" oninput="updatePreview()" class="w-1/5 p-2 border border-gray-300 rounded-md text-sm" value="2020">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-800 border-b border-gray-300 pb-1 uppercase tracking-wide text-sm">Projects <span class="font-normal text-gray-400 lowercase">(Leave title blank to hide)</span></h4>
+                    
+                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-md shadow-sm">
+                        <input type="text" id="proj1Title" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md font-bold text-sm" value="Face Attendance System">
+                        <input type="text" id="proj1Tech" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md text-sm text-gray-600" value="Tech: Python, Django, MySQL, HTML, CSS, JS">
+                        <textarea id="proj1Desc" oninput="updatePreview()" rows="2" class="w-full p-2 border border-gray-300 rounded-md text-sm">Facial recognition-based system to record attendance. End-to-end development including backend, database integration, and UI.</textarea>
+                    </div>
+
+                    <div class="p-3 bg-gray-50 border border-gray-200 rounded-md shadow-sm">
+                        <input type="text" id="proj2Title" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md font-bold text-sm" value="Nismay Insurance System">
+                        <input type="text" id="proj2Tech" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md text-sm text-gray-600" value="Tech: Python, Django, MySQL, HTML, CSS, JS">
+                        <textarea id="proj2Desc" oninput="updatePreview()" rows="2" class="w-full p-2 border border-gray-300 rounded-md text-sm">Insurance-related service portal. Developed full-stack independently.</textarea>
+                    </div>
+
+                    <div class="p-3 bg-white border border-dashed border-gray-300 rounded-md">
+                        <input type="text" id="proj3Title" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md font-bold text-sm focus:ring-indigo-500" placeholder="Project 3 Title">
+                        <input type="text" id="proj3Tech" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Tech Stack">
+                        <textarea id="proj3Desc" oninput="updatePreview()" rows="2" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Description"></textarea>
+                    </div>
+
+                    <div class="p-3 bg-white border border-dashed border-gray-300 rounded-md">
+                        <input type="text" id="proj4Title" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md font-bold text-sm focus:ring-indigo-500" placeholder="Project 4 Title">
+                        <input type="text" id="proj4Tech" oninput="updatePreview()" class="w-full mb-2 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Tech Stack">
+                        <textarea id="proj4Desc" oninput="updatePreview()" rows="2" class="w-full p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" placeholder="Description"></textarea>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-800 border-b border-gray-300 pb-1 uppercase tracking-wide text-sm">Technical Skills</h4>
+                    <div>
+                        <textarea id="skills" oninput="updatePreview()" rows="4" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">Languages: Python, Java, C++, C, basic Rust, R
+Web Technologies: HTML, CSS, JavaScript
+Databases: MySQL, MSQL
+Tools & Platforms: Git, GitHub, VS Code
+Core Concepts: OOPS, Data Structures & Algorithms, Manual Testing, Automation Testing (Learning Selenium)</textarea>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-800 border-b border-gray-300 pb-1 uppercase tracking-wide text-sm">Additional Information</h4>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase">Achievements</label>
+                        <textarea id="achievements" oninput="updatePreview()" rows="2" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">Successfully completed multiple full-stack projects independently. Regular self-learner through platforms like YouTube and open-source communities.</textarea>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-600 uppercase">Strengths</label>
+                        <textarea id="strengths" oninput="updatePreview()" rows="2" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">Fast learner & adaptable, Analytical and problem-solving mindset, Team collaboration skills, Attention to detail, Good communication and documentation skills.</textarea>
+                    </div>
+
+                    <div class="flex space-x-4">
+                        <div class="w-1/2">
+                            <label class="block text-xs font-semibold text-gray-600 uppercase">Languages Known</label>
+                            <input type="text" id="languages" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" value="English, Kannada, Hindi">
+                        </div>
+                        <div class="w-1/2">
+                            <label class="block text-xs font-semibold text-gray-600 uppercase">Hobbies</label>
+                            <input type="text" id="hobbies" oninput="updatePreview()" class="w-full mt-1 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500" value="Software testing tools, coding tutorials, photography, bike riding, music & movies">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <h4 class="font-bold text-gray-800 border-b border-gray-300 pb-1 uppercase tracking-wide text-sm">Links & Socials</h4>
+                    <div class="flex space-x-2">
+                        <input type="text" id="linkedin" oninput="updatePreview()" placeholder="LinkedIn Username" class="w-1/3 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">
+                        <input type="text" id="github" oninput="updatePreview()" placeholder="GitHub Username" class="w-1/3 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">
+                        <input type="text" id="portfolio" oninput="updatePreview()" placeholder="Portfolio (e.g. mayur.dev)" class="w-1/3 p-2 border border-gray-300 rounded-md text-sm focus:ring-indigo-500">
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="w-2/3 bg-gray-300 p-8 overflow-auto relative print-pane text-center">
+            
+            <div id="resumePreviewContainer" class="bg-white w-[210mm] min-h-[297mm] shadow-2xl p-0 relative transition-all duration-300 print:shadow-none inline-block text-left align-top shrink-0 mx-auto">
+               </div>
+
+            <div id="aiModal" class="hidden absolute top-8 left-1/2 transform -translate-x-1/2 w-[85%] bg-white/95 backdrop-blur-md shadow-2xl rounded-2xl border border-indigo-100 p-8 z-20 no-print text-left">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-2xl font-extrabold text-gray-900 tracking-tight"><i class="fa-solid fa-brain text-indigo-600 mr-3"></i>Gemini ATS Analysis</h2>
+                    <button onclick="document.getElementById('aiModal').classList.add('hidden')" class="text-gray-400 hover:text-gray-900 bg-gray-100 hover:bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center transition-colors"><i class="fa-solid fa-xmark"></i></button>
+                </div>
+                
+                <div class="mb-6 p-5 bg-indigo-50/50 border border-indigo-100 rounded-xl">
+                    <label class="block text-sm font-bold text-indigo-900 mb-2">Analyze an External Resume (Optional)</label>
+                    <input type="file" id="resumeUpload" accept=".pdf" class="block w-full text-sm text-gray-600 file:mr-4 file:py-2.5 file:px-5 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-indigo-600 file:text-white hover:file:bg-indigo-700 transition-colors cursor-pointer">
+                    <p class="text-xs text-indigo-600/70 mt-2 font-medium"><i class="fa-solid fa-circle-info mr-1"></i>If you upload a PDF, Gemini will ignore the live form and analyze the document instead.</p>
+                </div>
+                <hr class="mb-6 border-gray-100">
+                
+                <div id="aiContent" class="space-y-4">
+                    <div class="flex items-center justify-center space-x-3 text-indigo-600 py-8">
+                        <i class="fa-solid fa-circle-notch fa-spin text-2xl"></i>
+                        <span class="font-medium text-lg">Analyzing your profile against ATS standards...</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/builder.js') }}?v=3.0"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<style>
+    .t8 { padding: 30px; font-family: 'Arial', sans-serif; }
+    .t8 header { text-align: center; border-bottom: 2px solid #ccc; padding-bottom: 15px; margin-bottom: 15px;}
+    .t8 h1 { margin: 0; font-size: 28px; }
+    .t8 .main-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+    .t8 h2 { font-size: 14px; text-transform: uppercase; color: #444; border-bottom: 1px solid #ddd;}
+    .t8 p, .t8 span { font-size: 11px; line-height: 1.5; }
+</style>
+<div class="t8">
+    <header>
+        <h1 id="prev-name">Name</h1>
+        <b id="prev-title">Role</b><br>
+        <span><span id="prev-phone"></span> | <span id="prev-email"></span><br><span id="prev-address"></span></span>
+        <div id="link-container" style="margin-top: 5px;"></div>
+    </header>
+    <div class="main-grid">
+        <div>
+            <h2>Objective</h2><p id="prev-summary"></p>
+            <h2>Education</h2>
+            <p id="container-phd"><b>PhD</b> <span id="prev-phd-college"></span> - <span id="prev-phd-score"></span></p>
+            <p id="container-master"><b>Master's</b> <span id="prev-master-college"></span> - <span id="prev-master-score"></span></p>
+            <p><b>B.E.</b> <span id="prev-college"></span> - <span id="prev-deg-score"></span></p>
+            <p><b>PUC</b> <span id="prev-puc-college"></span> - <span id="prev-puc-score"></span></p>
+            <p><b>SSLC</b> <span id="prev-sslc-school"></span> - <span id="prev-sslc-score"></span></p>
+            <h2>Skills</h2><p id="prev-skills"></p>
+        </div>
+        <div>
+            <h2 id="header-projects">Projects</h2>
+            <div id="container-proj1"><b><span id="prev-proj1-title"></span></b><p id="prev-proj1-desc"></p></div>
+            <div id="container-proj2"><b><span id="prev-proj2-title"></span></b><p id="prev-proj2-desc"></p></div>
+            <div id="container-proj3"><b><span id="prev-proj3-title"></span></b><p id="prev-proj3-desc"></p></div>
+            <div id="container-proj4"><b><span id="prev-proj4-title"></span></b><p id="prev-proj4-desc"></p></div>
+            
+            <h2>Strengths & Achievements</h2>
+            <p id="prev-strengths"></p><p id="prev-achievements"></p>
+        </div>
+    </div>
+</div>
