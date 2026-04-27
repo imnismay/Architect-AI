@@ -31,7 +31,7 @@ Built with an emphasis on rapid prototyping and clean architecture, this applica
 * **Backend:** Python 3, Flask, PyPDF2
 * **Database & Auth:** SQLite, Flask-SQLAlchemy, Flask-Login, Werkzeug
 * **Frontend:** HTML5, Tailwind CSS (via CDN), Vanilla JavaScript
-* **AI Integration:** `google-generativeai` (Gemini 1.5 Pro)
+* **AI Integration:** `google-generativeai` (Gemini 2.5 flash)
 
 ---
 
